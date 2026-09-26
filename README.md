@@ -1,5 +1,7 @@
 # 🚀 FullStackDemo — React + FastAPI + PostgreSQL + MongoDB
 
+## Made by Charan
+
 A **super-simple monorepo** for freshers to learn full-stack development and GitHub.
 
 ```
