@@ -4,7 +4,7 @@ A **super-simple monorepo** for freshers to learn full-stack development and Git
 
 ```
 FullStackDemo/
-├── frontend/          # React (Vite) — Todos (Postgres) + Notes (Mongo) UI
+├── frontend/          # React (Vite) — Sleek starter shell (status + build queue)
 ├── backend/           # FastAPI — REST API, /docs included
 ├── docker-compose.yml # postgres + mongo + backend + frontend
 └── .github/workflows/ci.yml  # simple CI: pytest + npm build + docker build
@@ -54,26 +54,12 @@ npm run dev   # http://localhost:5173
 - **PostgreSQL** = structured rows (good for todos, users, orders).
 - **MongoDB** = flexible documents (good for notes, logs, free-form JSON).
 
-## 4️⃣ 🎓 3 Tasks for Juniors
+## 4️⃣ 🎓 Work board (GitHub Issues)
 
-### Task 1 — Easy: Add a "Clear completed" feel (Frontend only)
-In `frontend/src/App.jsx`, add a button / filter for todos:
-- e.g. show counts: "3 total, 1 done", or hide/show completed.
-- File to change: `frontend/src/App.jsx` (+ maybe `index.css`).
-- Success: `npm run build` passes in `frontend/`, UI shows the new feature via `docker compose up`.
+The frontend is an intentional starter shell — no demo features. Juniors build them via these issues (also linked in the app's Build queue):
 
-### Task 2 — Medium: Add validation + a new field (Full-stack)
-Add a `priority` (low/medium/high) to Todos:
-1. Backend: add column in `backend/app/models.py`, update `schemas.py`, update `POST /api/todos` in `main.py`.
-2. Frontend: dropdown when creating a todo + show priority badge.
-3. DB tip: easiest is `docker compose down -v` to recreate the table (we use `create_all` for simplicity).
-- Success: new todos save priority, visible in UI, old tests still pass (`pytest` in `backend/`).
+1. **[Frontend] Build Todos panel on top of GET/POST /api/todos** ([#2](https://github.com/0xFreak/Full-Stack-Demo/issues/2)) — list + add form against the existing API. Start here.
+2. **[Full-stack] Add priority field to Todos** ([#1](https://github.com/0xFreak/Full-Stack-Demo/issues/1)) — DB column → API validation → UI badge.
+3. **[Backend + Docs] Add search to list endpoints and CI badge to README** ([#3](https://github.com/0xFreak/Full-Stack-Demo/issues/3)) — `?q=` search + Actions badge.
 
-### Task 3 — Harder: Search + CI badge (Backend + DevOps)
-1. Backend: add search query param: `GET /api/todos?q=docker` and `GET /api/notes?q=...` (Postgres: `LIKE`, Mongo: regex).
-2. Frontend: add a search box that calls the API with `?q=`.
-3. CI: add a status badge to top of this README pointing at your repo's Actions (e.g. `[![CI](https://github.com/<you>/<repo>/actions/workflows/ci.yml/badge.svg)](...)`).
-- Success: searching filters results live, `pytest` + `npm run build` still green in CI.
-
----
-Made for learning: keep changes small, commit often, open PRs. Good luck! 🎉
+One PR per issue. Keep changes small, commit often. Good luck! 🎉
