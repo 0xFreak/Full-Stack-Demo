@@ -48,6 +48,14 @@ def list_todos(db: Session = Depends(get_db)):
     return db.query(models.Todo).order_by(models.Todo.id.desc()).all()
 
 
+@app.get("/api/todos/{todo_id}", response_model=schemas.TodoOut)
+def get_todo(todo_id: int, db: Session = Depends(get_db)):
+    todo = db.query(models.Todo).filter(models.Todo.id == todo_id).first()
+    if not todo:
+        raise HTTPException(status_code=404, detail="Todo not found")
+    return todo
+
+
 @app.post("/api/todos", response_model=schemas.TodoOut, status_code=201)
 def create_todo(payload: schemas.TodoCreate, db: Session = Depends(get_db)):
     if not payload.title.strip():
